@@ -2,8 +2,6 @@
 // used for updating state with api data
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 // used for rendering things
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -30,7 +28,7 @@ export default function GamesIndex() {
     },[])
 
     return (
-        <main className="container row">
+        <div className="container row">
             {games.map((game) => (
                 <Card key={game.id} style={{ width: '30%', margin: 5}}>
                     <h3>{game.name}</h3>
@@ -43,6 +41,6 @@ export default function GamesIndex() {
                     </div>
                 </Card>
             ))}
-        </main>
+        </div>
         )
     }

@@ -39,11 +39,16 @@ const alwaysOptions = (
 				Home
 			</Link>
 		</Nav.Item>
+		<Nav.Item className='m-2'>
+			<Link to='/all-games' style={linkStyle}>
+				Games
+			</Link>
+		</Nav.Item>
 	</>
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
+	<Navbar bg="dark" data-bs-theme="dark" expand='md'>
 		<Navbar.Brand>
             <Link to='/' style={linkStyle}>
                 GameHub

@@ -1,4 +1,3 @@
-import GamesIndex from "./games/GamesIndex"
 
 const Home = (props) => {
 	// const { msgAlert, user } = props
@@ -7,7 +6,6 @@ const Home = (props) => {
 	return (
 		<>
 			<h2>Home Page</h2>
-			<GamesIndex />
 		</>
 	)
 }
