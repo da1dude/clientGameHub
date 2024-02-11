@@ -17,17 +17,24 @@ export const signUp = (credentials) => {
 }
 
 export const signIn = (credentials) => {
-	return axios({
-		url: apiUrl + '/sign-in',
-		method: 'POST',
-		data: {
-			credentials: {
-				email: credentials.email,
-				password: credentials.password,
-			},
-		},
-	})
-}
+    let signInData = {
+        credentials: {}
+    };
+
+    if (credentials.email) {
+        signInData.credentials.email = credentials.email;
+    } else if (credentials.userName) {
+        signInData.credentials.userName = credentials.userName;
+    }
+
+    signInData.credentials.password = credentials.password;
+
+    return axios({
+        url: apiUrl + '/sign-in',
+        method: 'POST',
+        data: signInData
+    });
+};
 
 export const signOut = (user) => {
 	return axios({

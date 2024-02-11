@@ -8,30 +8,23 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const SignIn = (props) => {
-	// constructor(props) {
-	// 	super(props)
-
-	// 	this.state = {
-	// 		email: '',
-	// 		password: '',
-	// 	}
-	// }
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const navigate = useNavigate()
-
-	// handleChange = (event) =>
-	// 	this.setState({
-	// 		[event.target.name]: event.target.value,
-	// 	})
+    let credentials
+    let userName
 
 	const onSignIn = (event) => {
 		event.preventDefault()
         console.log('the props', props)
 		const { msgAlert, setUser } = props
 
-        const credentials = {email, password}
+        if (email.includes('@')) {
+            credentials = {email, password}
+        } else {
+            userName = email
+            credentials = {userName, password}
+        }
 
 		signIn(credentials)
 			.then((res) => setUser(res.data.user))
@@ -52,7 +45,7 @@ const SignIn = (props) => {
 					variant: 'danger',
 				})
 			})
-	}
+	    }
 
     return (
         <div className='row'>
@@ -60,13 +53,13 @@ const SignIn = (props) => {
                 <h3>Sign In</h3>
                 <Form onSubmit={onSignIn}>
                     <Form.Group controlId='email'>
-                        <Form.Label>Email address</Form.Label>
+                        <Form.Label>Username</Form.Label>
                         <Form.Control
                             required
-                            type='email'
+                            type='userName'
                             name='email'
                             value={email}
-                            placeholder='Enter email'
+                            placeholder='Enter email or userName'
                             onChange={e => setEmail(e.target.value)}
                         />
                     </Form.Group>
