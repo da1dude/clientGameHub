@@ -31,10 +31,12 @@ const WishList = (props) => {
 
 
     return games ? (
+        <>
+        <h2>Wishlist Items</h2>
         <div className="container row">
             {games.map((game) => (
                 <Card key={game.id} style={{ width: '30%', margin: 5}}>
-                    <h3>{game.name}</h3>
+                    <h4>{game.name}</h4>
                     <p>Rating: {game.rating}</p>
                     <div>
                         <img style={{ width: '60%', margin: 5}}
@@ -43,11 +45,12 @@ const WishList = (props) => {
                         />
                     </div>
                     <Link to={`/games/${game._id}`} className='btn btn-info'>
-                        View {game.name}
+                        View
                     </Link>
                 </Card>
             ))}
         </div>
+        </>
     ):null
 }
 

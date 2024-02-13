@@ -5,48 +5,30 @@ import messages from '../shared/AutoDismissAlert/messages'
 
 
 
+
+
 const WishForm = (props) => {
-    const { user, wish, game, handleChange, msgAlert } = props
-    const navigate = useNavigate()
-    console.log('this is wishform line 9',wish)
+    const { user, wish, game, handleChange, handleSubmit, msgAlert } = props
 
-    const onSubmit = (e) => {
-        e.preventDefault()
+    console.log('this is wishform line 9', wish || game)
 
-        console.log('this is wish',wish)
-        createGame(user, wish)
-            .then(res => { navigate(`/game/${game.id}`)})
-            .then(() => {
-                msgAlert({
-                    heading: 'Oh Yeah!',
-                    message: messages.createWishSuccess,
-                    variant: 'success'
-                })
-            })
-            .catch(err => {
-                msgAlert({
-                    heading: 'Oh no!',
-                    message: messages.generalError,
-                    variant: 'danger'
-                })
-            })
-    }
+
 
 
 return (
     <>
     <Container>
-    <Form onSubmit={onSubmit}>
-        <Form.Group hidden>
-            <Form.Label>Id</Form.Label>
+    <Form onSubmit={handleSubmit}>
+        <Form.Group >
+            <Form.Label>Game Id</Form.Label>
             <Form.Control
                 name="rawgId"
                 id='rawgId'
-                value={game.id}
+                value={game.id || game.rawgId} 
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group hidden>
+        <Form.Group >
             <Form.Label>Name</Form.Label>
             <Form.Control
                 name="name"
@@ -55,25 +37,25 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group hidden>
+        <Form.Group >
             <Form.Label>Description</Form.Label>
             <Form.Control
                 name="description"
                 id='description'
-                value={game.description_raw}
+                value={game.description_raw || game.description}
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group hidden>
+        <Form.Group >
             <Form.Label>image</Form.Label>
             <Form.Control
                 name="image"
                 id='image'
-                value={game.background_image}
+                value={game.background_image || game.image}
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group hidden>
+        <Form.Group >
             <Form.Label>Score</Form.Label>
             <Form.Control
                 name="rating"

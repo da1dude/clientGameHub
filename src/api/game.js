@@ -38,6 +38,18 @@ export const createGame = (user, newWish) => {
     })
 }
 
+// UPDATE -> Adjust a game
+export const updateGame = (user, updatedGame) => {
+    return axios({
+        url: `${apiUrl}/games/${updatedGame._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { game: updatedGame }
+    })
+}
+
 // DELETE -> Set a pet free
 export const removeGame = (user, id) => {
     return axios({

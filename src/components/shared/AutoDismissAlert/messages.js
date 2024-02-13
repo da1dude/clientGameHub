@@ -9,6 +9,7 @@ const messages = {
 	generalError: 'Something went wrong. Please try again.',
 	createWishSuccess: 'Wish Item created successfully!',
 	deleteGameSuccess: 'Game deleted successfully!',
+	updateGameSuccess: 'Game updated successfully!',
 }
 
 module.exports = messages

@@ -34,10 +34,12 @@ export default function GamesIndex(props) {
     },[])
 
     return (
+        <>
+        <h2>Games Catalog</h2>
         <div className="container row">
             {games.map((game) => (
                 <Card key={game.id} style={{ width: '30%', margin: 5}}>
-                    <h3>{game.name}</h3>
+                    <h4>{game.name}</h4>
                     <p>Rating: {game.rating}</p>
                     <div>
                         <img style={{ width: '60%', margin: 5}}
@@ -46,10 +48,11 @@ export default function GamesIndex(props) {
                         />
                     </div>
                     <Link to={`/game/${game.id}`} className='btn btn-info'>
-                        View Game Details
+                        View
                     </Link>
                 </Card>
             ))}
         </div>
+        </>
         )
     }
