@@ -65,13 +65,13 @@ export default function GameShow(props) {
     }
     
 
-    const { id } = useParams()
+    const { rawgId } = useParams()
 
     useEffect(() => {
 
         async function getGame() {
             try {
-                const res = await axios.request(process.env.REACT_APP_RAWGGAMES + `/${id}`+ process.env.REACT_APP_KEY);// this is the API call
+                const res = await axios.request(process.env.REACT_APP_RAWGGAMES + `/${rawgId}`+ process.env.REACT_APP_KEY);// this is the API call
                 console.log('This is the response: \n', res.data);// this is the API response
                 setGame(res.data) 
                 setWish({

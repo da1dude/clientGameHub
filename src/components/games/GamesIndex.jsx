@@ -21,7 +21,8 @@ export default function GamesIndex(props) {
             try {
                 const res = await axios.request(process.env.REACT_APP_RAWGGAMES + process.env.REACT_APP_KEY);// this is the API call
                 console.log('This is the response: \n', res.data.results);// this is the API response
-                setGames(res.data.results) 
+                setGames(res.data.results)
+
             } catch (error) {
                 msgAlert({
                     heading: 'Oh no!',
