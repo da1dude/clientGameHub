@@ -1,5 +1,5 @@
 // import React, { Component, Fragment } from 'react'
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 import "./App.css"
@@ -9,22 +9,40 @@ import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
 import Home from './components/Home'
 import GamesIndex from './components/games/GamesIndex'
+import GameShow from './components/games/GameShow'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import WishList from './components/games/WishList'
 
 const App = () => {
 
   const [user, setUser] = useState(null)
   const [msgAlerts, setMsgAlerts] = useState([])
 
+  useEffect(() => {
+	// access localStorage
+	const loggedInUser = localStorage.getItem('user')
+
+	if (loggedInUser) {
+		// we need to parse the json string
+		const foundUser = JSON.parse(loggedInUser)
+		// then set that saved user in state
+		setUser(foundUser)
+	}
+}, [])
+
   console.log('user in app', user)
   console.log('message alerts', msgAlerts)
+
   const clearUser = () => {
-    console.log('clear user ran')
-    setUser(null)
-  }
+	console.log('clear user ran')
+	// to clear the user saved in local storage
+	localStorage.removeItem('user')
+	// to clear the user saved in state
+	setUser(null)
+}
 
 	const deleteAlert = (id) => {
 		setMsgAlerts((prevState) => {
@@ -46,7 +64,17 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
-					<Route path='/all-games' element={<GamesIndex msgAlert={msgAlert} user={user} />} />
+					<Route 
+						path='/all-games' 
+						element={<GamesIndex msgAlert={msgAlert} user={user} />} />
+					<Route 
+					path='/games'
+					element={
+					<RequireAuth user={user}>
+						<WishList msgAlert={msgAlert} clearUser={clearUser} user={user} />
+					</RequireAuth>
+					}
+				/>
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
@@ -70,6 +98,10 @@ const App = () => {
 							<ChangePassword msgAlert={msgAlert} user={user} />
 						</RequireAuth>}
 					/>
+					<Route 
+						path='/game/:id' 
+						element={<GameShow msgAlert={msgAlert} user={user} />} />
+					
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
@@ -80,6 +112,7 @@ const App = () => {
 						id={msgAlert.id}
 						deleteAlert={deleteAlert}
 					/>
+				
 				))}
 			</Fragment>
 		)

@@ -1,39 +1,36 @@
 // this component is going to take functionality away from Home.js, and focus only on displaying a list of pets gathered from the database, via an API call
 // used for updating state with api data
 import {useState, useEffect} from 'react'
-import axios from 'axios'
+import { getAllGames } from "../../api/game"
 // used for rendering things
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-require('dotenv').config()
 
+const WishList = (props) => {
+    const [games, setGames] = useState(null)
+    const [error, setError] = useState(false)
 
-export default function GamesIndex(props) {
+    const { msgAlert, user } = props
 
-    const [reload, setReload] = useState(true)
-    const [games, setGames] = useState([])
-
-    const { msgAlert } = props
-
-    useEffect(() => {
-        async function getGames() {
-            try {
-                const res = await axios.request(process.env.REACT_APP_RAWGGAMES + process.env.REACT_APP_KEY);// this is the API call
-                console.log('This is the response: \n', res.data.results);// this is the API response
-                setGames(res.data.results) 
-            } catch (error) {
+	useEffect(() => {
+		getAllGames(user)
+			.then(res => {
+                console.log('games from axios call: \n', res.data.games)
+				setGames(res.data.games)
+			})
+			.catch(error => {
                 msgAlert({
                     heading: 'Oh no!',
                     message: 'something went wrong!',
                     variant: 'danger'
                 })
-            }
-        }
-        getGames()  
-    },[])
+            })
+	}, [])
 
-    return (
+
+
+    return games ? (
         <div className="container row">
             {games.map((game) => (
                 <Card key={game.id} style={{ width: '30%', margin: 5}}>
@@ -41,15 +38,18 @@ export default function GamesIndex(props) {
                     <p>Rating: {game.rating}</p>
                     <div>
                         <img style={{ width: '60%', margin: 5}}
-                            src={game.background_image}
+                            src={game.image}
                             alt={game.name}
                         />
                     </div>
-                    <Link to={`/game/${game.id}`} className='btn btn-info'>
-                        View Game Details
+                    <Link to={`/games/${game.id}`} className='btn btn-info'>
+                        View {game.name}
                     </Link>
                 </Card>
             ))}
         </div>
-        )
-    }
+    ):null
+}
+
+
+export default WishList
