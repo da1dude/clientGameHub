@@ -56,7 +56,7 @@ const WishListShow = (props) => {
     // }
 
 
-    return (
+    return game ? (
         <main className="container row">
                     <h1>{game.name}</h1>
                     <img style={{ width: '60%', margin: 5}}
@@ -73,7 +73,7 @@ const WishListShow = (props) => {
                     </Button>
                     <a href={game.website} target="_blank"> {game.website} </a>
         </main>
-    )
+    ) : null
 }
 
 export default WishListShow
