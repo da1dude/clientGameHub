@@ -15,6 +15,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import WishList from './components/games/WishList'
+import WishListShow from './components/games/WishListShow'
 
 const App = () => {
 
@@ -74,7 +75,7 @@ const App = () => {
 						<WishList msgAlert={msgAlert} clearUser={clearUser} user={user} />
 					</RequireAuth>
 					}
-				/>
+					/>
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
@@ -101,6 +102,14 @@ const App = () => {
 					<Route 
 						path='/game/:id' 
 						element={<GameShow msgAlert={msgAlert} user={user} />} />
+					<Route 
+						path='/games/:id'
+						element={
+						<RequireAuth user={user}>
+							<WishListShow msgAlert={msgAlert} clearUser={clearUser} user={user} />
+						</RequireAuth>
+					}
+					/>
 					
 				</Routes>
 				{msgAlerts.map((msgAlert) => (

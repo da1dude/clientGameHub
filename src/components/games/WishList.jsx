@@ -42,7 +42,7 @@ const WishList = (props) => {
                             alt={game.name}
                         />
                     </div>
-                    <Link to={`/games/${game.id}`} className='btn btn-info'>
+                    <Link to={`/games/${game._id}`} className='btn btn-info'>
                         View {game.name}
                     </Link>
                 </Card>

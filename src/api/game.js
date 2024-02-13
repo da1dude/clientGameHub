@@ -14,8 +14,14 @@ export const getAllGames = (user) => {
 }
 
 // READ -> Show
-export const getOneGame = (id) => {
-    return axios(`${apiUrl}/games/${id}`)
+export const getOneGame = (user, id) => {
+    return axios({
+        url: `${apiUrl}/games/${id}`,
+        method: 'GET',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+    })
 }
 
 // CREATE -> Add a pet
@@ -29,5 +35,16 @@ export const createGame = (user, newWish) => {
             Authorization: `Token token=${user.token}`
         },
         data: { game: newWish }
+    })
+}
+
+// DELETE -> Set a pet free
+export const removeGame = (user, id) => {
+    return axios({
+        url: `${apiUrl}/games/${id}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
     })
 }
