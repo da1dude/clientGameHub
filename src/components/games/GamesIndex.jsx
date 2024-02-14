@@ -15,7 +15,6 @@ require('dotenv').config()
 
 export default function GamesIndex(props) {
 
-    const [reload, setReload] = useState(true)
     const [games, setGames] = useState([])
 
     const { msgAlert } = props

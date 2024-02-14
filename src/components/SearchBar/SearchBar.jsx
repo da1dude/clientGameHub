@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-import { Form, Button } from "react-bootstrap";
-import msgAlert from "../shared/AutoDismissAlert/messages";
-import messages from "../shared/AutoDismissAlert/messages";
+import { Form} from "react-bootstrap";
 
 require('dotenv').config()
 
@@ -33,17 +31,18 @@ const SearchBar = ({setResults}) => {
         };
 
     return (
-        <Form className="d-flex">
-            <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                value={input}
-                onChange={(e) => handleChange(e.target.value)}
-            />
-    </Form>
-
+        <div className="d-flex justify-content-center">
+            <Form className="d-flex">
+                <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    value={input}
+                    onChange={(e) => handleChange(e.target.value)}
+                />
+            </Form>
+        </div>
     );
 };
 

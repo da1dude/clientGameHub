@@ -11,7 +11,7 @@ const SearchResult = ({ result }) => {
     };
 
     return (
-        <Link to={`/game/${result.id}`} className="search-result btn btn-info" onClick={handleClick}>
+        <Link to={`/game/${result.id}`} className="search-result btn btn-outline-primary me-3 mb-3" style={{ color: 'white', borderColor: 'white' }} onClick={handleClick}>
             {result.name}
         </Link>
     );

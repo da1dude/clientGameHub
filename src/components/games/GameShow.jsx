@@ -6,11 +6,12 @@ import { createGame } from '../../api/game'
 import messages from '../shared/AutoDismissAlert/messages'
 import { useNavigate } from 'react-router-dom'
 import LoadingScreen from '../shared/LoadingScreen'
+import { Col, Row, Image, Button } from 'react-bootstrap';
+import "./GameShow.css"
 
 
-// used for rendering things
-import { Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+
+
 
 require('dotenv').config()
 
@@ -20,16 +21,8 @@ export default function GameShow(props) {
 
     const navigate = useNavigate()
 
-    const [reload, setReload] = useState(true)
     const [game, setGame] = useState([])
-    const [wish, setWish] = useState({
-        // rawgId: `${game.id}`,       
-        // name: `${game.name}`,
-        // description: `${game.description_raw}`,
-        // image: `${game.background_image}`,
-        // rating: `${game.rating}`,
-        // comment: ''
-    })
+    const [wish, setWish] = useState({})
     const onChange = (e) => {
         e.persist()
         setWish(prevWish => {
@@ -68,6 +61,7 @@ export default function GameShow(props) {
     
 
     const { id } = useParams()
+    
 
     useEffect(() => {
 
@@ -95,32 +89,34 @@ export default function GameShow(props) {
         getGame()  
     },[])
 
+    if (!game) {
+        return <LoadingScreen />
+    }
 
     return (
-        <>
-        <main className="container row">
-            <h4>{game.name}</h4>
-            <img style={{ width: '60%', margin: 5}}
-                    src={game.background_image}
-                    alt={game.name}
-            />
-            <p>{game.description_raw}</p>
-            <a href={game.website} target="_blank"> {game.website} </a>
-        </main>
-        { user 
-            ?
-            <WishForm
-                wish={wish}
-                game={game}
-                user={user}
-                handleChange={onChange}
-                handleSubmit={onSubmit}
-                msgAlert={msgAlert}
-                heading="Add Wishlist Item"
-            />
-            : 
-            <p>Sign In to add items to your wish list!</p>
-        }
-        </>
+        <Row className="mt-4 d-flex justify-content-center">
+            <Col lg={10}>
+                <h1 className="mb-4 text-center">{game.name}</h1>
+                <Image fluid src={game.background_image} alt={game.name} className="mb-4 image" />
+                <p className="mb-4">{game.description_raw}</p>
+                <a href={game.website} target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary ms-3 me-3 mb-3" style={{ color: 'white', borderColor: 'white' }}>
+                    Visit Website
+                </a>
+                <br />
+                {user ? (
+                    <WishForm
+                        wish={wish}
+                        game={game}
+                        user={user}
+                        handleChange={onChange}
+                        handleSubmit={onSubmit}
+                        msgAlert={msgAlert}
+                        heading="Add to Wishlist"
+                    />
+                ) : (
+                    <p>Sign In to Add to Wishlist</p>
+                )}
+            </Col>
+        </Row>
         )
     }

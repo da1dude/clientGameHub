@@ -64,7 +64,7 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Button type="submit">Add to Wish List</Button>
+        <Button type="submit" className="btn btn-outline-primary me-3 mb-3" style={{ color: 'white', borderColor: 'white', backgroundColor: 'transparent',  }}>Add to Wish List</Button>
         <Form.Group>
             <Form.Label>Add a comment for {game.name}</Form.Label>
             <Form.Control
