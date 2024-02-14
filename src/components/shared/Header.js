@@ -62,7 +62,7 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
 	<Navbar bg="dark" data-bs-theme="dark" expand='md'>
-		<Navbar.Brand>
+		<Navbar.Brand className='m-2'>
             <Link to='/' style={linkStyle}>
                 GameHub
             </Link>

@@ -16,7 +16,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import WishList from './components/games/WishList'
 import WishListShow from './components/games/WishListShow'
-import SearchBar from './components/SearchBar/SearchBar'
+// import SearchBar from './components/SearchBar/SearchBar'
 
 const App = () => {
   const [results, setResults] = useState([])
@@ -65,7 +65,7 @@ const App = () => {
 		return (
 			<Fragment>
 				<Header user={user} />
-				<SearchBar setResults={setResults}/>
+				{/* <SearchBar setResults={setResults}/> */}
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 					<Route 

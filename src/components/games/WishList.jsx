@@ -32,24 +32,27 @@ const WishList = (props) => {
 
     return games ? (
         <>
-        <h2>Wishlist Items</h2>
-        <div className="container row">
-            {games.map((game) => (
-                <Card key={game.id} style={{ width: '30%', margin: 5}}>
-                    <h4>{game.name}</h4>
-                    <p>Rating: {game.rating}</p>
-                    <div>
-                        <img style={{ width: '60%', margin: 5}}
-                            src={game.image}
-                            alt={game.name}
-                        />
+            <h2 className="mb-4 text-center">Your Wishlist</h2>
+            <div className="row">
+                {games.map((game) => (
+                    <div className="col-md-4" key={game.id}> {/* Use col-md-4 to split the row into 3 columns */}
+                        <Card className="card mb-4"> {/* Add mb-4 for some margin at the bottom */}
+                            <Card.Img style={{ height: '200px', objectFit: 'cover' }} variant="top" src={game.image} alt={game.name} />
+                            <Card.Body>
+                                <h6><strong>{game.name}</strong></h6>
+                                <Card.Text>
+                                    Rating: {game.rating}
+                                </Card.Text>
+                                <div className="d-flex justify-content-center">
+                                    <Link to={`/games/${game._id}`} className='text-center btn btn-info'>
+                                        View {game.name}
+                                    </Link>
+                                </div>
+                            </Card.Body>
+                        </Card>
                     </div>
-                    <Link to={`/games/${game._id}`} className='btn btn-info'>
-                        View
-                    </Link>
-                </Card>
-            ))}
-        </div>
+                ))}
+            </div>
         </>
     ):null
 }

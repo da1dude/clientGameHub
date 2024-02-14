@@ -19,7 +19,7 @@ return (
     <>
     <Container>
     <Form onSubmit={handleSubmit}>
-        <Form.Group >
+        <Form.Group hidden>
             <Form.Label>Game Id</Form.Label>
             <Form.Control
                 name="rawgId"
@@ -28,7 +28,7 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group >
+        <Form.Group hidden>
             <Form.Label>Name</Form.Label>
             <Form.Control
                 name="name"
@@ -37,7 +37,7 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group >
+        <Form.Group hidden>
             <Form.Label>Description</Form.Label>
             <Form.Control
                 name="description"
@@ -46,7 +46,7 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group >
+        <Form.Group hidden>
             <Form.Label>image</Form.Label>
             <Form.Control
                 name="image"
@@ -55,7 +55,7 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Form.Group >
+        <Form.Group hidden>
             <Form.Label>Score</Form.Label>
             <Form.Control
                 name="rating"
