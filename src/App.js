@@ -16,35 +16,36 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import WishList from './components/games/WishList'
 import WishListShow from './components/games/WishListShow'
-// import SearchBar from './components/SearchBar/SearchBar'
+import SearchBar from './components/SearchBar/SearchBar'
+import SearchResultList from './components/SearchBar/SearchResultList'
 
 const App = () => {
-  const [results, setResults] = useState([])
+	const [results, setResults] = useState([])
 
-  const [user, setUser] = useState(null)
-  const [msgAlerts, setMsgAlerts] = useState([])
+	const [user, setUser] = useState(null)
+	const [msgAlerts, setMsgAlerts] = useState([])
 
-  useEffect(() => {
-	// access localStorage
-	const loggedInUser = localStorage.getItem('user')
+	useEffect(() => {
+		// access localStorage
+		const loggedInUser = localStorage.getItem('user')
 
-	if (loggedInUser) {
-		// we need to parse the json string
-		const foundUser = JSON.parse(loggedInUser)
-		// then set that saved user in state
-		setUser(foundUser)
-	}
-}, [])
+		if (loggedInUser) {
+			// we need to parse the json string
+			const foundUser = JSON.parse(loggedInUser)
+			// then set that saved user in state
+			setUser(foundUser)
+		}
+	}, [])
 
-  console.log('user in app', user)
-  console.log('message alerts', msgAlerts)
+	console.log('user in app', user)
+	console.log('message alerts', msgAlerts)
 
-  const clearUser = () => {
-	console.log('clear user ran')
-	// to clear the user saved in local storage
-	localStorage.removeItem('user')
-	// to clear the user saved in state
-	setUser(null)
+	const clearUser = () => {
+		console.log('clear user ran')
+		// to clear the user saved in local storage
+		localStorage.removeItem('user')
+		// to clear the user saved in state
+		setUser(null)
 }
 
 	const deleteAlert = (id) => {
@@ -58,14 +59,15 @@ const App = () => {
 		setMsgAlerts(() => {
 			return (
 				[{ heading, message, variant, id }]
-      )
+        )
 		})
 	}
 
 		return (
 			<Fragment>
 				<Header user={user} />
-				{/* <SearchBar setResults={setResults}/> */}
+				<SearchBar setResults={setResults}/>
+				<SearchResultList results={results} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
 					<Route 

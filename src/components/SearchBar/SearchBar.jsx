@@ -10,7 +10,8 @@ const SearchBar = ({setResults}) => {
     const [input, setInput] = useState("");
 
     const fetchData = (value) => {
-        fetch(process.env.REACT_APP_RAWGGAMES + process.env.REACT_APP_KEY)
+        fetch(process.env.REACT_APP_SEARCH + value)
+            .then (console.log(process.env.REACT_APP_SEARCH + value))
             .then((response) => response.json())
             .then((json) => {
                 const results = json.results.filter((game) => {
@@ -22,13 +23,14 @@ const SearchBar = ({setResults}) => {
                     );
                 });
                 setResults(results);
+                console.log('this is the results', results)
             });
         };
-
+        
     const handleChange = (value) => {
         setInput(value);
         fetchData(value);
-    };
+        };
 
     return (
         <Form className="d-flex">
@@ -40,7 +42,6 @@ const SearchBar = ({setResults}) => {
                 value={input}
                 onChange={(e) => handleChange(e.target.value)}
             />
-    <Button variant="outline-success">Search</Button>
     </Form>
 
     );

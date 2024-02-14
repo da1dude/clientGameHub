@@ -5,6 +5,8 @@ import WishForm from '../shared/WishForm'
 import { createGame } from '../../api/game'
 import messages from '../shared/AutoDismissAlert/messages'
 import { useNavigate } from 'react-router-dom'
+import LoadingScreen from '../shared/LoadingScreen'
+
 
 // used for rendering things
 import { Card } from 'react-bootstrap'
@@ -92,6 +94,7 @@ export default function GameShow(props) {
         }
         getGame()  
     },[])
+
 
     return (
         <>

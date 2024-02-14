@@ -5,6 +5,10 @@ import axios from 'axios'
 // used for rendering things
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import LoadingScreen from '../shared/LoadingScreen';
 
 require('dotenv').config()
 
@@ -15,6 +19,33 @@ export default function GamesIndex(props) {
     const [games, setGames] = useState([])
 
     const { msgAlert } = props
+
+
+    //settings for the slider
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    infinite: true,
+                    dots: true
+                }
+            },
+            {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    };
 
     useEffect(() => {
         async function getGames() {
@@ -34,28 +65,35 @@ export default function GamesIndex(props) {
         getGames()  
     },[])
 
+    if (!games) {
+        return <LoadingScreen />
+    }
+
+
     return (
         <>
-            <h2 className="mb-4 text-center">Top 20 Games</h2>
-            <div className="row">
-                {games.map((game) => (
-                    <div className="col-md-4" key={game.id}> {/* Use col-md-4 to split the row into 3 columns */}
-                        <Card className="card mb-4"> {/* Add mb-4 for some margin at the bottom */}
-                            <Card.Img style={{ height: '200px', objectFit: 'cover' }} variant="top" src={game.background_image} alt={game.name} />
-                            <Card.Body>
-                                <h6>{game.name}</h6>
-                                <Card.Text>
-                                    Rating: {game.rating}
-                                </Card.Text>
-                                <div className="d-flex justify-content-center">
-                                    <Link to={`/game/${game.id}`} className='text-center btn btn-info'>
-                                        View {game.name}
-                                    </Link>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                ))}
+        <div style={{ paddingLeft: '40px', paddingRight: '40px' }}>
+                <h2 className="text-center">Top 20 Games</h2>
+                <Slider {...settings}>
+                    {games.map((game) => (
+                        <div key={game.id}>
+                            <Card className="card mb-4">
+                                <Card.Img style={{ height: '150px', objectFit: 'cover' }} variant="top" src={game.background_image} alt={game.name} />
+                                <Card.Body>
+                                    <h6>{game.name}</h6>
+                                    <Card.Text>
+                                        Rating: {game.rating}
+                                    </Card.Text>
+                                    <div className="d-flex justify-content-center">
+                                        <Link to={`/game/${game.id}`} className='btn btn-info' style={{ marginTop: '10px' }}>
+                                            View
+                                        </Link>
+                                    </div>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    ))}
+                </Slider>
             </div>
         </>
     )
