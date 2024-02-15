@@ -1,14 +1,9 @@
 import { Form, Button, Container } from 'react-bootstrap'
-import { createGame } from '../../api/game'
-import { useNavigate } from 'react-router-dom'
-import messages from '../shared/AutoDismissAlert/messages'
-
-
 
 
 
 const WishForm = (props) => {
-    const { user, wish, game, handleChange, handleSubmit, msgAlert } = props
+    const { wish, game, handleChange, handleSubmit } = props
 
     console.log('this is wishform line 9', wish || game)
 
@@ -74,12 +69,8 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        
     </Form>
     </Container>
-    <br />
-    <br />
-    <br />
     </>
     )
 }

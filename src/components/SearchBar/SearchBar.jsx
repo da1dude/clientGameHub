@@ -31,12 +31,11 @@ const SearchBar = ({setResults}) => {
         };
 
     return (
-        <div className="d-flex justify-content-center">
-            <Form className="d-flex">
+        <div className="d-flex justify-content-center mt-2">
+            <Form>
                 <Form.Control
                     type="search"
                     placeholder="Search"
-                    className="me-2"
                     aria-label="Search"
                     value={input}
                     onChange={(e) => handleChange(e.target.value)}

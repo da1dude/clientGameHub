@@ -94,28 +94,34 @@ export default function GameShow(props) {
     }
 
     return (
-        <Row className="mt-4 d-flex justify-content-center">
+        <Row className="ms-4 me-4 mt-4 mb-4 justify-content-center">
             <Col lg={10}>
                 <h1 className="mb-4 text-center">{game.name}</h1>
                 <Image fluid src={game.background_image} alt={game.name} className="mb-4 image" />
                 <p className="mb-4">{game.description_raw}</p>
-                <a href={game.website} target="_blank" rel="noopener noreferrer" className="btn btn-outline-primary ms-3 me-3 mb-3" style={{ color: 'white', borderColor: 'white' }}>
-                    Visit Website
-                </a>
-                <br />
-                {user ? (
-                    <WishForm
-                        wish={wish}
-                        game={game}
-                        user={user}
-                        handleChange={onChange}
-                        handleSubmit={onSubmit}
-                        msgAlert={msgAlert}
-                        heading="Add to Wishlist"
-                    />
-                ) : (
-                    <p>Sign In to Add to Wishlist</p>
-                )}
+                <div className="d-flex justify-content-center align-items-start"> {/* Ensure consistent width */}
+                    <Button href={game.website} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        variant="outline-primary" 
+                        className="me-3 mb-3"
+                        style={{ color: 'white', borderColor: 'white' }}>
+                            Website
+                    </Button>
+                    {user ? (
+                        <WishForm
+                            wish={wish}
+                            game={game}
+                            user={user}
+                            handleChange={onChange}
+                            handleSubmit={onSubmit}
+                            msgAlert={msgAlert}
+                            heading="Add to Wishlist"
+                        />
+                    ) : (
+                        <p className="mb-0">Sign In to Add to Wishlist</p>
+                    )}
+                </div>
             </Col>
         </Row>
         )

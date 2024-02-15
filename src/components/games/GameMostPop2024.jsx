@@ -9,12 +9,11 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import LoadingScreen from '../shared/LoadingScreen';
-import GamesMostPop from './GameMostPop2024';
 
 require('dotenv').config()
 
 
-export default function GamesIndex(props) {
+export default function GamesMostPop(props) {
 
     const [games, setGames] = useState([])
 
@@ -50,7 +49,7 @@ export default function GamesIndex(props) {
     useEffect(() => {
         async function getGames() {
             try {
-                const res = await axios.request(process.env.REACT_APP_RAWGGAMES + process.env.REACT_APP_KEY);// this is the API call
+                const res = await axios.request(process.env.REACT_APP_2024);// this is the API call
                 console.log('This is the response: \n', res.data.results);// this is the API response
                 setGames(res.data.results)
 
@@ -73,7 +72,7 @@ export default function GamesIndex(props) {
     return (
         <>
         <div style={{ paddingLeft: '40px', paddingRight: '40px' }}>
-                <h2 className="text-center">Top 20 Games</h2>
+                <h2 className="text-center">Most Popular of 2024</h2>
                 <Slider {...settings}>
                     {games.map((game) => (
                         <div key={game.id}>
@@ -97,7 +96,6 @@ export default function GamesIndex(props) {
             </div>
             <br />
             <br />
-            <GamesMostPop/>
         </>
     )
 }

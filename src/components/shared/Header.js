@@ -2,13 +2,6 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-
-
-
-
-
 
 const linkStyle = {
     color: 'white',
@@ -61,17 +54,17 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-	<Navbar bg="dark" data-bs-theme="dark" expand='md'>
-		<Navbar.Brand className='m-2'>
+	<Navbar bg="dark" data-bs-theme="dark" expand='md' className="border border-white">
+		<Navbar.Brand className='ms-4'>
             <Link to='/' style={linkStyle}>
                 GameHub
             </Link>
         </Navbar.Brand>
 		<Navbar.Toggle aria-controls='basic-navbar-nav' />
 		<Navbar.Collapse id='basic-navbar-nav'>
-			<Nav className='ml-auto'>
+			<Nav className='ms-auto me-4'>
 				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.userName}</span>
+					<span className='navbar-text'>Welcome, {user.userName}</span>
 				)}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
