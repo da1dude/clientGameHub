@@ -106,8 +106,12 @@ const SignUp = (props) => {
                             onChange={e => setPasswordConfirmation(e.target.value)}
                         />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
-                        Submit
+                    <Button 
+                        variant="outline-primary" 
+                        className="mt-2 me-3 mb-3"
+                        style={{ color: 'white', borderColor: 'white' }}
+                        type='submit'>
+                            Submit
                     </Button>
                 </Form>
             </div>

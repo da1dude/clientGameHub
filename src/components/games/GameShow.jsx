@@ -76,6 +76,7 @@ export default function GameShow(props) {
                     description: `${res.data.description_raw}`,
                     image: `${res.data.background_image}`,
                     rating: `${res.data.rating}`,
+                    released: `${res.data.released}`,
                     comment: ''
                 })
             } catch (error) {
@@ -94,12 +95,11 @@ export default function GameShow(props) {
     }
 
     return (
-        <Row className="ms-4 me-4 mt-4 mb-4 justify-content-center">
+        <Row className="ms-4 me-4 mb-4 justify-content-center">
             <Col lg={10}>
                 <h1 className="mb-4 text-center">{game.name}</h1>
                 <Image fluid src={game.background_image} alt={game.name} className="mb-4 image" />
-                <p className="mb-4">{game.description_raw}</p>
-                <div className="d-flex justify-content-center align-items-start"> {/* Ensure consistent width */}
+                <div className="d-inline-flex">
                     <Button href={game.website} 
                         target="_blank" 
                         rel="noopener noreferrer" 
@@ -108,6 +108,11 @@ export default function GameShow(props) {
                         style={{ color: 'white', borderColor: 'white' }}>
                             Website
                     </Button>
+                    <p className="mb-4 me-4">Rating: {game.rating}</p>
+                    <p className="mb-4">Release Date: {game.released}</p>
+                </div>
+                <p className="mb-4">{game.description_raw}</p>
+                <div className="d-flex justify-content-center align-items-start"> 
                     {user ? (
                         <WishForm
                             wish={wish}
@@ -119,7 +124,7 @@ export default function GameShow(props) {
                             heading="Add to Wishlist"
                         />
                     ) : (
-                        <p className="mb-0">Sign In to Add to Wishlist</p>
+                        <h2 className="mb-0"><strong>Sign In to Add to Wishlist</strong></h2>
                     )}
                 </div>
             </Col>

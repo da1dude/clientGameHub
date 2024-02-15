@@ -50,7 +50,7 @@ export default function GamesIndex(props) {
     useEffect(() => {
         async function getGames() {
             try {
-                const res = await axios.request(process.env.REACT_APP_RAWGGAMES + process.env.REACT_APP_KEY);// this is the API call
+                const res = await axios.request(process.env.REACT_APP_INDEX);// this is the API call
                 console.log('This is the response: \n', res.data.results);// this is the API response
                 setGames(res.data.results)
 
@@ -78,14 +78,14 @@ export default function GamesIndex(props) {
                     {games.map((game) => (
                         <div key={game.id}>
                             <Card className="card mb-4">
-                                <Card.Img style={{ height: '150px', objectFit: 'cover' }} variant="top" src={game.background_image} alt={game.name} />
+                                <Card.Img style={{ height: '125px', objectFit: 'cover' }} variant="top" src={game.background_image} alt={game.name} />
                                 <Card.Body>
                                     <h6>{game.name}</h6>
                                     <Card.Text>
                                         Rating: {game.rating}
                                     </Card.Text>
                                     <div className="d-flex justify-content-center">
-                                        <Link to={`/game/${game.id}`} className='btn btn-info' style={{ marginTop: '10px' }}>
+                                        <Link to={`/game/${game.id}`} className="btn btn-outline-primary me-3 mb-3" variant="outline-primary" style={{ color: 'white', borderColor: 'white'}}>
                                             View
                                         </Link>
                                     </div>

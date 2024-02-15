@@ -77,14 +77,14 @@ export default function GamesMostPop(props) {
                     {games.map((game) => (
                         <div key={game.id}>
                             <Card className="card mb-4">
-                                <Card.Img style={{ height: '150px', objectFit: 'cover' }} variant="top" src={game.background_image} alt={game.name} />
+                                <Card.Img style={{ height: '125px', objectFit: 'cover' }} variant="top" src={game.background_image} alt={game.name} />
                                 <Card.Body>
                                     <h6>{game.name}</h6>
                                     <Card.Text>
                                         Rating: {game.rating}
                                     </Card.Text>
                                     <div className="d-flex justify-content-center">
-                                        <Link to={`/game/${game.id}`} className='btn btn-info' style={{ marginTop: '10px' }}>
+                                        <Link to={`/game/${game.id}`} variant="outline-primary" className="btn btn-outline-primary me-3 mb-3" style={{ color: 'white', borderColor: 'white'}}>
                                             View
                                         </Link>
                                     </div>

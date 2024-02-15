@@ -59,7 +59,16 @@ return (
                 onChange={handleChange}
             />
         </Form.Group>
-        <Button type="submit" className="btn btn-outline-primary me-3 mb-3" style={{ color: 'white', borderColor: 'white', backgroundColor: 'transparent',  }}>Add to Wish List</Button>
+        <Form.Group hidden>
+            <Form.Label>Released</Form.Label>
+            <Form.Control
+                name="released"
+                id='released'
+                value={game.released}
+                onChange={handleChange}
+            />
+        </Form.Group>
+        <Button type="submit" className="btn btn-outline-primary me-3 mb-3" variant="outline-primary" style={{ color: 'white', borderColor: 'white'  }}>Add to Wish List</Button>
         <Form.Group>
             <Form.Label>Add a comment for {game.name}</Form.Label>
             <Form.Control

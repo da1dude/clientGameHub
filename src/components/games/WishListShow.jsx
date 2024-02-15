@@ -1,9 +1,3 @@
-// PETSHOW is our details page. The show page for a single pet
-// this is where a LOT of our key functionality will exist
-// we'll be building this component over time, as it will be the star component of our app.
-// eventually, this is where we will give our pets toys
-// this is where we will be able to update and delete them
-// this will be rendered by it's own route -> pets/<id>
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { getOneGame, removeGame, updateGame } from '../../api/game'
@@ -11,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import messages from '../shared/AutoDismissAlert/messages'
 import EditWishModal from './EditGameModal'
+import { Col, Row, Image } from 'react-bootstrap';
 
 
 
@@ -61,43 +56,56 @@ const WishListShow = (props) => {
 
 
     return game ? (
-        <>
-            <main className="container row">
-                <h4>{game.name}</h4>
-                <img style={{ width: '60%', margin: 5}}
-                        src={game.image}
-                        alt={game.name}
-                />
-                <p>{game.description}</p>
-                <hr />
-                <p><strong>Your Note on the Game: </strong> {game.comment}</p>
-                <hr />
-                <Button
-                    className='m-2'
-                    variant='warning'
-                    onClick={() => setEditModalShow(true)}
-                >
-                    Edit Comment
-                </Button>
-                <Button
-                    className='m-2'
-                    variant='danger'
-                    onClick={() => setDelGame()}
-                >
-                    Remove
-                </Button>
-                <a href={game.website} target="_blank"> {game.website} </a>
-            </main>
-            <EditWishModal
-                user={user}
-                show={editModalShow}
-                updateGame={updateGame}
-                msgAlert={msgAlert}
-                handleClose={() => setEditModalShow(false)}
-                game={game}
-                triggerRefresh={() => setUpdated(prev => !prev)}
-            />
-        </>
+        <Row className="ms-4 me-4 mb-4 justify-content-center">
+            <Col lg={10}>
+                <h1 className="mb-4 text-center">{game.name}</h1>
+                <Image fluid src={game.image} alt={game.name} className="mb-4 image" />
+                <div>
+                    <div className="d-inline-flex justify-content-center">
+                        <Button
+                            className="me-3 mb-3"
+                            variant="outline-primary"
+                            style={{ color: 'white', borderColor: 'white' }}
+                            onClick={() => setDelGame()}
+                        >
+                            Remove From Wishlist
+                        </Button>
+                        <Button href={game.website} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            variant="outline-primary" 
+                            className="me-3 mb-3"
+                            style={{ color: 'white', borderColor: 'white' }}>
+                                Website
+                        </Button>
+                        <p className="mb-4 me-4">Rating: {game.rating}</p>
+                        <p className="mb-4">Release Date: {game.released}</p>
+                    </div>
+                </div>
+                <div className="d-inline-flex justify-content-center">
+                    <Button
+                        className="me-3 mb-3"
+                        variant="outline-primary"
+                        style={{ color: 'white', borderColor: 'white' }}
+                        onClick={() => setEditModalShow(true)}
+                    >
+                        Edit Comment
+                    </Button>
+                    <p><strong>Your comment: </strong> {game.comment}</p>
+                </div>
+                <p className="mb-4">{game.description}</p>
+                <EditWishModal
+                        user={user}
+                        show={editModalShow}
+                        updateGame={updateGame}
+                        msgAlert={msgAlert}
+                        handleClose={() => setEditModalShow(false)}
+                        game={game}
+                        triggerRefresh={() => setUpdated(prev => !prev)}
+                    />
+
+            </Col>
+        </Row>
     ) : null
 }
 

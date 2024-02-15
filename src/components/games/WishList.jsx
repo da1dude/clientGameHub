@@ -44,7 +44,7 @@ const WishList = (props) => {
                                     Rating: {game.rating}
                                 </Card.Text>
                                 <div className="d-flex justify-content-center">
-                                    <Link to={`/games/${game._id}`} className='text-center btn btn-info'>
+                                    <Link to={`/games/${game._id}`} className="btn btn-outline-primary me-3 mb-3" style={{ color: 'white', borderColor: 'white', backgroundColor: 'transparent',  }}>
                                         View {game.name}
                                     </Link>
                                 </div>
