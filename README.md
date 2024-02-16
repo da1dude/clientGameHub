@@ -3,7 +3,10 @@
 GameHub is a online application that will display games, allow you to view thier details and add them to a wish list. Here you will find over 500 games to view! Search them by category or by name!
 
 # App URL:
+https://gamehub-ga.netlify.app/
 
+# Back End Url:
+https://gamehubapiga.fly.dev
 
 # User Stories
   - As a user, I want the ability to sign up.
@@ -47,6 +50,12 @@ GameHub is a online application that will display games, allow you to view thier
 
 # V1 Images
 
+![alt text](<public/IMGs/Screenshot 2024-02-16 at 8.55.50 AM.png>) 
+![alt text](<public/IMGs/Screenshot 2024-02-16 at 8.56.39 AM.png>) 
+![alt text](<public/IMGs/Screenshot 2024-02-16 at 8.57.02 AM.png>) 
+![alt text](<public/IMGs/Screenshot 2024-02-16 at 8.57.55 AM.png>) 
+![alt text](<public/IMGs/Screenshot 2024-02-16 at 8.58.18 AM.png>) 
+![alt text](<public/IMGs/Screenshot 2024-02-16 at 8.58.43 AM.png>)
 
 
 # ICE BOX
