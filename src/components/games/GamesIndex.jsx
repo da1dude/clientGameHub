@@ -23,7 +23,7 @@ export default function GamesIndex(props) {
 
     //settings for the slider
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
@@ -72,7 +72,7 @@ export default function GamesIndex(props) {
 
     return (
         <>
-        <div style={{ paddingLeft: '40px', paddingRight: '40px' }}>
+        <div className="mb-4" style={{ paddingLeft: '40px', paddingRight: '40px' }}>
                 <h2 className="text-center">Top 20 Games</h2>
                 <Slider {...settings}>
                     {games.map((game) => (
@@ -95,8 +95,6 @@ export default function GamesIndex(props) {
                     ))}
                 </Slider>
             </div>
-            <br />
-            <br />
             <GamesMostPop/>
         </>
     )

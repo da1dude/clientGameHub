@@ -22,7 +22,7 @@ export default function GamesMostPop(props) {
 
     //settings for the slider
     const settings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
@@ -71,7 +71,7 @@ export default function GamesMostPop(props) {
 
     return (
         <>
-        <div style={{ paddingLeft: '40px', paddingRight: '40px' }}>
+        <div className="mt-4" style={{ paddingLeft: '40px', paddingRight: '40px' }}>
                 <h2 className="text-center">Most Popular of 2024</h2>
                 <Slider {...settings}>
                     {games.map((game) => (
