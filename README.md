@@ -22,15 +22,15 @@ https://gamehubapiga.fly.dev
 
 # Wire Frame
 
-![WireFrame](IMGs/WireFrame.png)
+![!\[WireFrame\](IMGs/WireFrame.png)](public/IMGs/WireFrame.png)
 
 # ERD
 
-![ERD](IMGs/ERD.png)
+![!\[ERD\](IMGs/ERD.png)](public/IMGs/ERD.png)
 
 # Data Flow
 
-![Data Flow](<IMGs/Data Flow 2.png>)
+![!\[Data Flow\](<IMGs/Data Flow 2.png>)](<public/IMGs/Data Flow 2.png>)
 
 # Technologies Used
 
